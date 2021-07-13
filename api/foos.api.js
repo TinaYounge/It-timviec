@@ -1,9 +1,10 @@
 const express = require("express");
-const router = express.Router;
+const router = express.Router();
 
 ///CRUD Foo
-router.post("/", (req, res) => {});
+// router.post("/", (req, res) => {});
 router.get("/", (_, res) => {
-  console.log("foo");
+  console.log("Foo");
   res.send(["spam", "ham"]);
 });
+module.exports = router;

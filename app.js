@@ -6,9 +6,8 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
 console.log({ env: process.env });
-const indexRouter = require("./routes/index");
+const indexRouter = require("./api/index");
 // const usersRouter = require('./routes/users');
-
 const app = express();
 
 app.use(logger("dev"));

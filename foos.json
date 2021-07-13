@@ -1,0 +1,64 @@
+{
+  "foos": [
+    {
+      "id": 0,
+      "firstName": "Albus",
+      "lastName": "Dumbledore",
+      "title": "Albus Dumbledore"
+    },
+    {
+      "id": 1,
+      "firstName": "Tom",
+      "lastName": "Riddle",
+      "title": "Tom Riddle"
+    },
+    {
+      "id": 2,
+      "firstName": "Harry",
+      "lastName": "Potter",
+      "title": "Harry Potter"
+    },
+    {
+      "id": 3,
+      "firstName": "Hermione",
+      "lastName": "Granger",
+      "title": "Hermione Granger"
+    },
+    {
+      "id": 4,
+      "firstName": "Ron",
+      "lastName": "Weasley",
+      "title": "Ron Weasley"
+    },
+    {
+      "id": 5,
+      "firstName": "Gellert",
+      "lastName": "Grindelwald",
+      "title": "Gellert Grindelwald"
+    },
+    {
+      "id": 6,
+      "firstName": "Salazar",
+      "lastName": "Slytherin",
+      "title": "Salazar Slytherin"
+    },
+    {
+      "id": 7,
+      "firstName": "Godric",
+      "lastName": "Gryffindor",
+      "title": "Godric Gryffindor"
+    },
+    {
+      "id": 8,
+      "firstName": "Credence",
+      "lastName": "Barebone",
+      "title": "Credence Barebone"
+    },
+    {
+      "id": 9,
+      "firstName": "Severus",
+      "lastName": "Snape",
+      "title": "Severus Snape"
+    }
+  ]
+}

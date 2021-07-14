@@ -27,6 +27,7 @@ router.post("/", (req, res) => {
 router.get("/", (req, res) => {
   try {
     const { city, page } = req.query;
+
     if (page) {
       const nth = parseInt(req.query.page);
       const a = (nth - 1) * 20;
@@ -60,17 +61,18 @@ router.get("/", (req, res) => {
     res.status(404).send("something is not good");
   }
 });
+// As a client app I can make a PATCH request to
+// http://localhost:5000/companies/:id and
+// add a property enterprise, which is true,
 
 router.patch("/:id", (req, res) => {
   try {
-    const idx = companies.findIndex((f) => f.id === parseInt(req.params.id));
-    const company = companies[idx];
+    const idx = parseInt(req.params.id);
+    console.log("req.params.id)", req.params.id);
+    // const company = companies[idx];
+    companies[idx].enterprise = "true";
     console.log(idx);
-    for (const param of addablecompanyParams) {
-      if (req.body[param]) company[param] = req.body[param];
-    }
-    company.fullName = req.body.firstName + " " + req.body.lastName;
-    res.send(company);
+    res.status(202).send(companies[idx]);
   } catch (error) {
     res.status(404).send("something is not good");
   }
@@ -84,5 +86,16 @@ router.delete("/", (_, res) => {
   } catch (error) {
     res.status(404).send("something is not good");
   }
+});
+
+router.delete("/:id", (req, res) => {
+  const idx = req.params.id;
+  console.log("idx", idx);
+  const deleteCompany = companies.findIndex((element) => element.id === idx);
+  console.log("deleteCompany", deleteCompany);
+  if (deleteCompany === -1)
+    return res.status(404).send("something is not good");
+  companies.splice(deleteCompany, 1);
+  res.send(companies);
 });
 module.exports = router;

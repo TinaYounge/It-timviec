@@ -3,16 +3,13 @@ const router = express.Router();
 const { jobs } = require("../data/data.json");
 //create
 
-const addablejobParams = ["firstName", "lastName"];
 router.post("/", (req, res) => {
   try {
-    const job = {};
-    for (const param of addablejobParams) {
-      if (req.body[param]) job[param] = req.body[param];
-    }
-    job.fullName = req.body.firstName + " " + req.body.lastName;
-    jobs.push(job);
-    res.status(201).send(jobs);
+    const cityCompanies = req.query.city;
+    const cityCompaniesList = companies.filter(
+      (params) => params.city === cityCompanies
+    );
+    const companiesIdList = res.status(404).send();
   } catch (error) {
     res.status(404).send("something is not good");
   }

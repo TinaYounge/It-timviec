@@ -24,29 +24,34 @@ const filterablecompanyParams = ["city", "name"];
 
 router.get("/", (req, res) => {
   try {
-    // if(req.query)
-    // const nth = parseInt(req.query.page);
-    // const a = (nth - 1) * 20;
-    // const b = nth * 20 - 1;
-    // res.status(202).send(companies.slice(a, b));
-    // city;
-    const cityCompanies = req.query.city;
-    console.log("cityCompanies", cityCompanies);
-    const cityJobList = jobs.filter((params) => params.city == cityCompanies);
-    const companiesIdList = [];
-    for (let i of cityJobList) {
-      companiesIdList.push(i.companyId);
-    }
-    companiesLocatedList = [];
-    for (let i of companies) {
-      for (let j of companiesIdList) {
-        if (i.id == j) {
-          companiesLocatedList.push(i.name);
+    const { city, page } = req.query;
+    if (page) {
+      const nth = parseInt(req.query.page);
+      const a = (nth - 1) * 20;
+      const b = nth * 20 - 1;
+      res.status(202).send(companies.slice(a, b));
+    } else if (city) {
+      // city;
+      const cityCompanies = req.query.city;
+      console.log("cityCompanies", cityCompanies);
+      const cityJobList = jobs.filter((params) => params.city == cityCompanies);
+      const companiesIdList = [];
+      for (let i of cityJobList) {
+        companiesIdList.push(i.companyId);
+      }
+      companiesLocatedList = [];
+      for (let i of companies) {
+        for (let j of companiesIdList) {
+          if (i.id == j) {
+            companiesLocatedList.push(i.name);
+          }
         }
       }
+      const result = [...new Set(companiesLocatedList)];
+      res.status(200).send(result);
+    } else {
+      res.status(202).send(companies.slice(0, 20));
     }
-    const result = [...new Set(companiesLocatedList)];
-    res.status(200).send(result);
   } catch (error) {
     res.status(404).send("something is not good");
   }

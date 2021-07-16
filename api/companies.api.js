@@ -61,15 +61,11 @@ router.get("/", (req, res) => {
     res.status(404).send("something is not good");
   }
 });
-// As a client app I can make a PATCH request to
-// http://localhost:5000/companies/:id and
-// add a property enterprise, which is true,
 
 router.patch("/:id", (req, res) => {
   try {
     const idx = parseInt(req.params.id);
     console.log("req.params.id)", req.params.id);
-    // const company = companies[idx];
     companies[idx].enterprise = "true";
     console.log(idx);
     res.status(202).send(companies[idx]);

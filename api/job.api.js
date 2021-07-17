@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { jobs } = require("../data/data.json");
+// const { jobs } = require("../data/data.json");
+const { jobs } = require("../tools/out.json");
+
 //create
 
-// const addablejobParams = ["title", "city"];
 router.post("/", (req, res) => {
   try {
     const j = req.body;

@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { companies } = require("../data/data.json");
-const { jobs } = require("../data/data.json");
-
+// const { companies } = require("../data/data.json");
+// const { jobs } = require("../data/data.json");
+const { companies } = require("../tools/out.json");
+const { jobs } = require("../tools/out.json");
 //create
 
 // const addablecompaniesParams = ["companiesName", "stock"];
@@ -55,7 +56,7 @@ router.get("/", (req, res) => {
       const result = [...new Set(companiesLocatedList)];
       res.status(202).send(result);
     } else {
-      res.status(202).send(companies.slice(0, 20));
+      res.status(202).send(companies);
     }
   } catch (error) {
     res.status(404).send("something is not good");

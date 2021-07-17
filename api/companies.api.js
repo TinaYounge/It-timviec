@@ -6,11 +6,11 @@ const { companies } = require("../tools/out.json");
 const { jobs } = require("../tools/out.json");
 //create
 
-// const addablecompaniesParams = ["companiesName", "stock"];
+// const addableCompaniesParams = ["companiesName", "stock"];
 router.post("/", (req, res) => {
   try {
     const company = {};
-    for (const param of addablecompaniesParams) {
+    for (const param of addableCompaniesParams) {
       if (req.body[param]) company[param] = req.body[param];
     }
     company.fullName = req.body.firstName + " " + req.body.lastName;
@@ -20,10 +20,6 @@ router.post("/", (req, res) => {
     res.status(404).send("something is not good");
   }
 });
-
-// const filterablecompanyParams = ["city", "name"];
-// http:localhost:5000/companies?page=5
-// http:localhost:5000/companies?/city
 
 router.get("/", (req, res) => {
   try {
@@ -56,8 +52,24 @@ router.get("/", (req, res) => {
       const result = [...new Set(companiesLocatedList)];
       res.status(202).send(result);
     } else {
-      res.status(202).send(companies);
+      res.status(202).send(companies.slice(0, 20));
     }
+  } catch (error) {
+    res.status(404).send("something is not good");
+  }
+});
+
+router.get("/companyId/:id", (req, res) => {
+  try {
+    const companyId = req.params;
+    const listJobInCom = [];
+    for (const j of jobs) {
+      if (j.companyId == companyId.id) {
+        listJobInCom.push(j);
+      }
+    }
+    console.log("listJobInCom", listJobInCom);
+    res.status(200).send(listJobInCom);
   } catch (error) {
     res.status(404).send("something is not good");
   }

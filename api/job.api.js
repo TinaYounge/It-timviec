@@ -27,10 +27,24 @@ const filterableJobParams = ["city", "name"];
 
 router.get("/", (req, res) => {
   try {
-    const { id, companyId } = req.query;
-    if (id) {
+    const { id, companyId, page } = req.query;
+    console.log("req.query", req.query);
+    if ((companyId, page)) {
+      const companyId = req.query.companyId;
+      console.log("company", companyId);
+      const listJobInCom = [];
+      for (const j of jobs) {
+        if (companyId == j.companyId) {
+          listJobInCom.push(j);
+        }
+      }
+      const nth = parseInt(req.query.page);
+      const a = (nth - 1) * 20;
+      const b = nth * 20 - 1;
+      res.status(201).send(listJobInCom.slice(a, b));
+      // res.status(202).send("good");
+    } else if (id) {
       const idxJob = jobs.findIndex((el) => el.id === id);
-      console.log("idxJob", idxJob);
       const result = jobs[idxJob];
       res.status(200).send(result);
     } else if (companyId) {
